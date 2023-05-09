@@ -1,0 +1,105 @@
+@import "colors.css";
+@import "normalize.css";
+@import "typography.css";
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+header {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    background-color: var(--color-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-header ul {
+    margin: 0 auto;
+    list-style-type: none;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.main-header li {
+    position: relative;
+    padding: 10px;
+}
+
+.main-header ul a {
+    color: var(--color-light);
+    text-decoration: none;
+}
+
+.mainContent {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: calc(100vh - 200px);
+}
+
+.sidebar {
+    width: 0%;
+    height: calc(100vh - 200px);
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    font-size: 24px;
+    position: absolute;
+    transition: 0.35s all;
+    z-index: 1;
+}
+
+.open {
+    width: 20%;
+}
+
+.content {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    padding: 20px;
+}
+
+.burger {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    background-color: var(--color-dark);
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    transform: translateY(-50%);
+}
+
+.burger .line {
+    width: 100%;
+    background-color: var(--color-secondary);
+    height: 4px;
+    border-radius: 4px;
+    transition: all 0.25s ease-in-out;
+}
+
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: var(--color-dark);
+}
