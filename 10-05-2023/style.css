@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    align-items: center;
+    background: #ACB1D6;
+    height: 100vh;
+}
+
+.calc-wrapper {
+    background: #FFEAD2;
+    border-radius: 8px;
+    color: black;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    padding: 20px;
+}
+
+.screen {
+    display: flex;
+    
+}
