@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Inter:wght@300&family=Wix+Madefor+Display&display=swap');
+
+body {
+    scroll-behavior: smooth;
+}
+
+#root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 54px;
+    text-transform: uppercase;
+    padding: 8px;
+    margin-bottom: 25px;
+}
+
+p {
+    font-family: 'Wix Madefor Display', sans-serif;
+    font-size: 18px;
+    color: #8b8b8b;
+    margin-top: 30px;
+    margin-bottom: 45px;
+    width: 30%;
+    text-align: center;
+}
+
+img {
+    padding: 2px;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 0,5px rgba(0, 0, 0, 0.329);
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+button {
+    font-family: 'Inter', sans-serif;
+    font-size: 32px;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
