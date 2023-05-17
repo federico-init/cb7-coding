@@ -1,7 +1,7 @@
 import { cE, qS, qSA, genProduct, createModal } from "./utils/fn.js";
 
 const rootEl = qS("#root");
-const searchBarInput = qS("searchInput");
+const searchBarInput = qS(".searchInput");
 const productListTitle = cE("h2");
 const productList = cE("div");
 // inizializzo un array vuoto per salvarmi i dati ottenuti dal fetch di products
@@ -31,7 +31,7 @@ fetch("https://dummyjson.com/products")
   });
 
 searchBarInput.addEventListener("input", (event) => {
-  // pulisco la lista card senza eliminare
+  // pulisco la lista card senza eliminare il div
   productList.textContent = "";
 
   // utilizzo la hof filter che mi permette di filtrare un array in base a una data condizione, in questo caso filtro in base al titolo dei prodotti
