@@ -30,8 +30,6 @@ heroEl.style.display = "none";
 
 rootEl.append(createLoginModal());
 
-console.log(rootEl);
-
 fetch("https://dummyjson.com/products")
   .then((res) => res.json())
   .then((data) => {

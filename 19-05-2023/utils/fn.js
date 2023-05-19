@@ -197,8 +197,6 @@ export const createLoginModal = () => {
   wrapperEl.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    console.log(event);
-
     // con doppia negazione invece di farmi restituire un oggetto mi faccio restituire un valore booleano, in questo caso true (!false == true)
     const isAuth = !!userList.find(
       (user) =>
@@ -212,7 +210,7 @@ export const createLoginModal = () => {
       rootEl.append(productListTitle, productList);
       rootEl.removeChild(wrapperEl);
     } else {
-      alertEl.textContent("Credentials error! Please try again.");
+      alertEl.textContent = "Wrong credentials. Please try again.";
     }
   });
 
