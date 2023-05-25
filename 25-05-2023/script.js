@@ -4,25 +4,51 @@ import {
   inputTextEl,
   rootEl,
   titleEl,
-  renderTodoList,
+  deleteItems,
+  renderItems,
+  renderList,
 } from "./utils/fn.js";
-import { POST } from "./utils/http.js";
+import { GET, POST } from "./utils/http.js";
 
 // creo un array di oggetti dove salvare gli elementi che trovo con la GET da poter manipolare con DELETE e POST fake
 export let todoItemList = [];
 
 let inputValueText;
 
-// dichiaro una variabile che prenda tutti i todo
-const todoItems = document.querySelectorAll(".todoItem");
-
 document.body.append(titleEl, inputTextEl, inputBtnEl, rootEl);
 
-// richiamo la funzione per la chiamata GET ai todos
-renderTodoList();
+// faccio la chiamata GET per popolare la lista
+GET()
+  .then(({ todos }) =>
+    todos.forEach((todo) => {
+      todoItemList.push(todo);
+      rootEl.append(createTodoItem(todo));
+    })
+  )
+  .then(() => renderItems())
+  .then(() => deleteItems());
 
-// aggiungo eventListener ai checkbox tramite funzione
-// renderItems();
+// try/catch su GET
+// fetch("https://dummyjson.com/todoss").then((res) => {
+//   try {
+//     if (res.ok) {
+//       return res.json();
+//     } else {
+//       throw new Error("Endpoint errato");
+//     }
+//   } catch (err) {
+//     console.log(err);
+//     return {
+//       todos: [
+//         {
+//           todo: "Lista non disponibile",
+//         },
+//       ],
+//     };
+//   } finally {
+//     // qui va il finally
+//   }
+// });
 
 // mi salvo il valore di input text
 inputTextEl.addEventListener("change", (evt) => {
@@ -37,8 +63,8 @@ inputBtnEl.addEventListener("click", () => {
     userId: Math.floor(Math.random() * 100),
   });
   // dato che la POST viene solo simulata uso l'array di appoggio per listare effettivamente il nuovo item
-  todoItemList.push({
-    id: todoItemList.length,
+  todoItemList.unshift({
+    id: todoItemList.length + 1,
     todo: inputValueText,
     completed: false,
     userId: Math.floor(Math.random() * 100),
@@ -48,5 +74,9 @@ inputBtnEl.addEventListener("click", () => {
   rootEl.textContent = "";
 
   // render della nuova lista a partire dall'array di appoggio
-  todoItemList.forEach((item) => rootEl.append(createTodoItem(item)));
+  renderList();
+
+  renderItems();
+
+  deleteItems();
 });

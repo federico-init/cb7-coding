@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap');
 
-/* TODO: gestire l'overflow della pagina e dei box */
+/* TODO: gestire l'overflow e dei box */
 
 body {
     font-family: 'Roboto', sans-serif;
@@ -17,9 +17,9 @@ body {
 .todo__input {
     border: none;
     outline: none;
-    height: 26px;
+    height: 30px;
     width: 300px;
-    box-shadow: 0 0 1px grey;
+    box-shadow: 0 0 2px grey;
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
     font-family: inherit;
@@ -30,8 +30,8 @@ body {
 .todo__add {
     border: none;
     border-radius: 2px;
-    height: 28px;
-    width: 28px;
+    height: 34px;
+    width: 34px;
     background-color: #4285f4;
     color: white;
     font-size: 15px;
@@ -54,8 +54,10 @@ body {
     border-radius: 4px;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     gap: 12px;
     padding-left: 12px;
+    padding-right: 24px;
     font-weight: bold;
 }
 
@@ -63,14 +65,40 @@ body {
     box-shadow: 0 0 4px #4285f4;
 }
 
-.todoItem__completed {
+.todoItem:hover .deleteBtn, .todoItem:active .deleteBtn {
+    display:block;
+}
+
+.todoItem__completed  p {
     text-decoration: line-through;
     font-weight: 400;
     opacity: 0.5;
 }
 
+.todoItem p {
+    flex: 1;
+    text-align: left;
+}
+
 .checkboxTodo {
     cursor: pointer;
+}
+
+.deleteBtn {
+    display: none;
+    height: 22px;
+    width: 22px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    border-radius: 50%;
+}
+
+.deleteBtn:hover {
+    background-color: #ea4336;
+    color: white;
 }
 
 

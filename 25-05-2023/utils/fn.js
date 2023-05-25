@@ -1,5 +1,5 @@
 import { todoItemList } from "../script.js";
-import { GET } from "./http.js";
+import { DELETE } from "./http.js";
 
 // definisco una funzione per creare dinamicamente gli elementi html
 export const createElement = (type, content, ...attrs) => {
@@ -74,7 +74,20 @@ export const createTodoItem = ({ id, todo, completed }) => {
   );
   const textTodoItem = createElement("p", todo);
 
-  todoItem.append(checkboxTodoItem, textTodoItem);
+  const deleteBtnTodo = createElement(
+    "button",
+    "x",
+    {
+      name: "class",
+      value: "deleteBtn",
+    },
+    {
+      name: "id",
+      value: id,
+    }
+  );
+
+  todoItem.append(checkboxTodoItem, textTodoItem, deleteBtnTodo);
 
   if (completed) {
     todoItem.classList.add("todoItem__completed");
@@ -84,19 +97,10 @@ export const createTodoItem = ({ id, todo, completed }) => {
   return todoItem;
 };
 
-export const renderTodoList = () => {
-  GET()
-    .then(({ todos }) =>
-      todos.forEach((todo) => {
-        todoItemList.push(todo);
-        rootEl.append(createTodoItem(todo));
-      })
-    )
-    .then(() => deleteItem())
-    .then(() => renderItems());
-};
+export const renderList = () =>
+  todoItemList.forEach((item) => rootEl.append(createTodoItem(item)));
 
-const renderItems = () => {
+export const renderItems = () => {
   const checkboxEls = qSA(".checkboxTodo");
   checkboxEls.forEach((checkbox) =>
     checkbox.addEventListener("click", (evt) => {
@@ -111,15 +115,29 @@ const renderItems = () => {
 };
 
 // implemento la chiamata DELETE
-const deleteItem = () => {
-  // dichiaro una variabile che prenda tutti i todo
-  const todoItems = document.querySelectorAll(".todoItem");
-  todoItems.forEach((item) =>
-    item.addEventListener("click", (evt) => {
-      if (confirm("Are you sure to delete this item?")) {
+export const deleteItems = () => {
+  const deleteBtns = document.querySelectorAll(".deleteBtn");
+  deleteBtns.forEach((button) =>
+    button.addEventListener("click", (evt) => {
+      if (confirm("Delete this item?")) {
         DELETE(`/${evt.target.id}`);
-        // filtro l'array in base all'id
-        todoItemList.filter((todo) => todo.id != evt.target.id);
+
+        todoItemList.forEach((item) => {
+          if (item.id == evt.target.id) {
+            const i = todoItemList.indexOf(item);
+            todoItemList.splice(i, 1);
+          }
+        });
+
+        // cancello tutto per non duplicare gli elementi
+        rootEl.textContent = "";
+
+        // render della nuova lista a partire dall'array di appoggio
+        renderList();
+
+        renderItems();
+
+        deleteItems();
       }
     })
   );

@@ -24,7 +24,7 @@ export const DELETE = async (endpoint) => {
   const res = await fetch(BASE_URL + endpoint, {
     method: "DELETE",
   });
-  const data = res.json();
+  const data = await res.json();
 
   return data;
 };
