@@ -1,0 +1,44 @@
+.mainContainer {
+    max-width:1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mainContent {
+    height: 300vh;
+}
+
+/* mobile, tablet */
+@media screen and (max-width: 1024px) {
+    .mainContent {
+        width: calc(100px - 88px);
+    }
+
+    .sidebar {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .mainContainer {
+        padding-left: 7%;
+        padding-right: 7%;
+    }
+
+    .mainContent {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .content {
+        width: 60%;
+    }
+
+    .sidebar {
+        width: 40%;
+    }
+}
