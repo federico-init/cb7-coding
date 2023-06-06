@@ -1,0 +1,74 @@
+.navbar__logoTitle {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--color-text-primary);
+}
+
+.logoWrapper {
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.logoWrapper svg {
+    width: 40px;
+    height: 40px;
+}
+
+.title {
+    font-size: 34px;
+    cursor: pointer;
+}
+
+.navbar__searchAdd {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.navbar__search {
+    height: 40px;
+    width: 250px;
+    margin: 20px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    background-color: #eff1f3;
+}
+
+i.fa-magnifying-glass {
+    margin: 10px;
+}
+
+.navbar__search__input {
+    height: 24px;
+    width: 180px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background-color: transparent;
+}
+
+.addBtn {
+    height: 40px;
+    width: 120px;
+    margin: 20px;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    color: var(--color-main);
+    background: var(--color-button);
+}
+
+.fa-plus {
+    height: 18px;
+    width: 18px;
+}

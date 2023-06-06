@@ -1,0 +1,7 @@
+:root {
+    --color-main: #ffffff;
+    --color-secondary: #fcfcfc;
+    --color-text-primary: #060608;
+    --color-text-secondary: #909093;
+    --color-button: linear-gradient(to right, #5478fc, #cb8bfb);
+}
