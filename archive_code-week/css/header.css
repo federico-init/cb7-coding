@@ -1,3 +1,5 @@
+/* NAVBAR */
+
 .navbar__logoTitle {
     margin: 20px;
     display: flex;
@@ -18,11 +20,12 @@
 }
 
 .title {
-    font-size: 34px;
+    font-size: 32px;
     cursor: pointer;
 }
 
 .navbar__searchAdd {
+    margin-right: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,17 +35,18 @@
 .navbar__search {
     height: 40px;
     width: 250px;
-    margin: 20px;
+    margin: 10px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 8px;
-    background-color: #eff1f3;
+    gap: 10px;
+    background-color: var(--color-main);
 }
 
 i.fa-magnifying-glass {
-    margin: 10px;
+    margin: 12px;
+    color: darkgray;
 }
 
 .navbar__search__input {
@@ -50,25 +54,46 @@ i.fa-magnifying-glass {
     width: 180px;
     border: none;
     outline: none;
-    font-size: 15px;
     background-color: transparent;
+    color: var(--color-text-primary);
+    font-family: inherit;
+    font-size: 15px;
+}
+
+.navbar__search__input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: darkgrey;
+    opacity: 1; /* Firefox */
+}
+
+.navbar__search__input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: darkgrey;
+}
+
+.navbar__search__input::-ms-input-placeholder { /* Microsoft Edge */
+    color: darkgrey;
 }
 
 .addBtn {
     height: 40px;
     width: 120px;
-    margin: 20px;
+    margin: 10px 20px 10px 10px;
     border: none;
     border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
     color: var(--color-main);
     background: var(--color-button);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.35s ease-out;
+}
+
+.addBtn:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
 .fa-plus {
-    height: 18px;
-    width: 18px;
+    margin-right: 10px;
 }
+
+/* END NAVBAR */

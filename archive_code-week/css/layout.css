@@ -12,3 +12,8 @@ nav {
     align-items: center;
     justify-content: space-between;
 }
+
+.root {
+    margin: 5% 10%;
+    color: var(--color-text-primary);
+}
