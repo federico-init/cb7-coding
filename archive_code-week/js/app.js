@@ -1,4 +1,12 @@
-import { createElement, isUserActive, qS, renderUserList } from "./utils/fn.js";
+import {
+  createElement,
+  createFilterButtons,
+  createHeader,
+  filterUserList,
+  isUserActive,
+  qS,
+  renderUserList,
+} from "./utils/fn.js";
 import { GET } from "./utils/http.js";
 
 export const userContainer = createElement("div", "", {
@@ -7,9 +15,13 @@ export const userContainer = createElement("div", "", {
 });
 
 const rootEl = qS(".root");
+
+// creo un array vuoto che conterrà i filtri
+let filterEls = [];
+
 rootEl.append(userContainer);
 
-const searchBox = qS(".navbar__search__input");
+export const searchBox = qS(".navbar__search__input");
 
 // creo un array dove pusho gli elementi che prelevo tramite GET
 export let userList = [];
@@ -20,25 +32,35 @@ GET("/users").then((data) => {
     if (isUserActive()) user.active = true;
     else user.active = false;
     userList.push(user);
-    renderUserList(user);
   });
-});
+  rootEl.insertBefore(createFilterButtons(userList), userContainer);
+  rootEl.insertBefore(createHeader(), userContainer);
 
-console.log(userList);
+  filterEls = qS(".user__filterContainer").childNodes;
+
+  renderUserList(userList);
+});
 
 // aggiungo un event listener al box di ricerca utente
 searchBox.addEventListener("input", (event) => {
   userContainer.textContent = "";
 
+  // creo una variabile per salvare il filtro attivo
+  let activeFilterBtn = "";
+
+  filterEls.forEach((button) => {
+    if (button.classList.contains("active")) activeFilterBtn = button;
+  });
+
+  let filteredList = filterUserList(activeFilterBtn);
+
   if (event.target.value != "") {
-    userList
-      .filter((user) =>
+    renderUserList(
+      filteredList.filter((user) =>
         user.name.toLowerCase().includes(event.target.value.toLowerCase())
       )
-      .forEach((item) => renderUserList(item));
+    );
   }
   // se pulisco la search box mostro di nuovo tutta la lista
-  else {
-    userList.forEach((user) => renderUserList(user));
-  }
+  else renderUserList(filteredList);
 });

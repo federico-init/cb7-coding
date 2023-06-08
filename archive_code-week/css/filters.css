@@ -1,0 +1,34 @@
+.user__filterContainer {
+    margin: 10px 0 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user__filterContainer button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+    gap: 10px;
+    height: 40px;
+    width: 120px;
+    border: none;
+    border-radius: 12px;
+    color: var(--color-text-primary);
+    background: var(--color-main);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: box-shadow 0.35s ease-out;
+}
+
+.user__filterContainer button:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.user__filterContainer button.active {
+    color: var(--color-main);
+    background: var(--color-button);
+}
