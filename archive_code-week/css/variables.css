@@ -4,4 +4,6 @@
     --color-text-primary: #060608;
     --color-text-secondary: #909093;
     --color-button: linear-gradient(to right, #5478fc, #cb8bfb);
+    --color-active: #01ad02;
+    --color-inactive: #fe310b;
 }
