@@ -1,5 +1,3 @@
-/* NAVBAR */
-
 .navbar__logoTitle {
     margin: 20px;
     display: flex;
@@ -96,4 +94,15 @@ i.fa-magnifying-glass {
     margin-right: 10px;
 }
 
-/* END NAVBAR */
+@media screen and (max-width: 768px) {
+    
+    .navbar__search {
+        width: 150px;
+    }
+
+    .addBtn {
+        width: 100px;
+    }
+
+
+}

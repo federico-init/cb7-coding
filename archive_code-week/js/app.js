@@ -14,7 +14,7 @@ export const userContainer = createElement("div", "", {
   value: "user__container",
 });
 
-const rootEl = qS(".root");
+export const rootEl = qS(".root");
 
 // creo un array vuoto che conterrà i filtri
 let filterEls = [];

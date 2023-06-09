@@ -1,4 +1,4 @@
-import { searchBox, userContainer, userList } from "../app.js";
+import { rootEl, searchBox, userContainer, userList } from "../app.js";
 
 // definisco una funzione per la selezione di uno o più elementi
 export const qS = (element) => document.querySelector(element);
@@ -14,6 +14,7 @@ export const createElement = (type, content, ...attrs) => {
   return element;
 };
 
+// funzione che crea i filter button
 export const createFilterButtons = (userList) => {
   const wrapperEl = createElement("div", "", {
     name: "class",
@@ -67,23 +68,23 @@ export const createFilterButtons = (userList) => {
   wrapperEl.append(allBtnEl, activeBtnEl, inactiveBtnEl);
 
   // inserisco gli event listener per i button
-  allBtnEl.addEventListener("click", (event) => {
-    if (!event.target.classList.contains("active")) {
-      onClickHandle(event.target);
+  allBtnEl.addEventListener("click", () => {
+    if (!allBtnEl.classList.contains("active")) {
+      onClickFilterHandle(allBtnEl);
       renderUserList(userList);
     }
   });
 
-  activeBtnEl.addEventListener("click", (event) => {
-    if (!event.target.classList.contains("active")) {
-      onClickHandle(event.target);
+  activeBtnEl.addEventListener("click", () => {
+    if (!activeBtnEl.classList.contains("active")) {
+      onClickFilterHandle(activeBtnEl);
       renderUserList(userList.filter((user) => user.active === true));
     }
   });
 
-  inactiveBtnEl.addEventListener("click", (event) => {
-    if (!event.target.classList.contains("active")) {
-      onClickHandle(event.target);
+  inactiveBtnEl.addEventListener("click", () => {
+    if (!inactiveBtnEl.classList.contains("active")) {
+      onClickFilterHandle(inactiveBtnEl);
       renderUserList(userList.filter((user) => user.active === false));
     }
   });
@@ -195,10 +196,18 @@ export const genUser = (userData) => {
     value: "user__website",
   });
 
-  const detailsBtnEl = createElement("button", "", {
-    name: "class",
-    value: "fa-regular fa-eye",
-  });
+  const detailsBtnEl = createElement(
+    "button",
+    "",
+    {
+      name: "class",
+      value: "fa-regular fa-eye",
+    },
+    {
+      name: "id",
+      value: userData.id,
+    }
+  );
 
   userImgContainerEl.append(userImageEl);
 
@@ -213,6 +222,228 @@ export const genUser = (userData) => {
   if (userData.active) wrapperEl.classList.add("activeUser");
   else wrapperEl.classList.add("inactiveUser");
 
+  detailsBtnEl.addEventListener("click", () => {
+    rootEl.append(openModalCard(userData));
+  });
+
+  return wrapperEl;
+};
+
+export const openModalCard = (userData) => {
+  // const wrapperEl = createElement("div", "", {
+  //   name: "class",
+  //   value: "userModal",
+  // });
+  const modalcardEl = createElement("div", "", {
+    name: "class",
+    value: "userModal",
+  });
+
+  // const overlayEl = createElement("div", "", {
+  //   name: "class",
+  //   value: "userModal__overlay",
+  // });
+  const wrapperEl = createElement("div", "", {
+    name: "class",
+    value: "userModal__overlay",
+  });
+
+  const userMainInfo = createElement("div", "", {
+    name: "class",
+    value: "userModal__info",
+  });
+
+  const closeBtnEl = createElement("div", "X", {
+    name: "class",
+    value: "userModal__closeBtn",
+  });
+
+  const userProfileEl = createElement("div", "", {
+    name: "class",
+    value: "modal__profile",
+  });
+
+  const userImgEl = createElement(
+    "img",
+    "",
+    {
+      name: "src",
+      value: `./img/users/${userData.id}.png`,
+    },
+    {
+      name: "alt",
+      value: `user ${userData.id} image`,
+    },
+    { name: "class", value: "userModal__img" }
+  );
+
+  const userNameUsernameEl = createElement("div", "", {
+    name: "class",
+    value: "modal__nameUsername",
+  });
+
+  const userNameEl = createElement("h3", userData.name, {
+    name: "class",
+    value: "modal__name",
+  });
+
+  const userAliasEl = createElement("p", "@" + userData.username, {
+    name: "class",
+    value: "modal__username",
+  });
+
+  const userStatusEl = createElement(
+    "p",
+    userData.active ? "Active" : "Inactive",
+    { name: "class", value: "modal__userStatus" }
+  );
+
+  if (userStatusEl.textContent.toLowerCase() === "active")
+    userStatusEl.classList.add("activeUser");
+  else userStatusEl.classList.add("inactiveUser");
+
+  const userDetails = createElement("div", "", {
+    name: "class",
+    value: "userModal__details",
+  });
+
+  const userContactsEl = createElement("div", "", {
+    name: "class",
+    value: "userContacts__container",
+  });
+
+  const userContactsTitleEl = createElement("h3", "Contacts", {
+    name: "class",
+    value: "userContacts__title",
+  });
+
+  const userContactsDetailsEl = createElement("div", "", {
+    name: "class",
+    value: "userContacts__detailsContainer",
+  });
+
+  const userContactsEmailEl = createElement(
+    "p",
+    `email: ${userData.email}`,
+    {
+      name: "class",
+      value: "userContacts__email",
+    },
+    { name: "href", value: `mailto:${userData.email}` }
+  );
+
+  const userContactsPhoneEl = createElement("p", `phone: ${userData.phone}`, {
+    name: "class",
+    value: "userContacts__phone",
+  });
+
+  const userContactsWebsiteEl = createElement(
+    "p",
+    `website: ${userData.website}`,
+    {
+      name: "class",
+      value: "userContacts__website",
+    }
+  );
+
+  // inizio address
+  const userAddressEl = createElement("div", "", {
+    name: "class",
+    value: "userAddress__container",
+  });
+
+  const userAddressTitleEl = createElement("h3", "Address", {
+    name: "class",
+    value: "userAddress__title",
+  });
+
+  const userAddressDetailsEl = createElement("div", "", {
+    name: "class",
+    value: "userAddress__addressContainer",
+  });
+
+  const userAddressStreetEl = createElement(
+    "p",
+    `street: ${userData.address.street} , ${userData.address.suite}`,
+    {
+      name: "class",
+      value: "userAddress__street",
+    }
+  );
+
+  const userAddressCityEl = createElement(
+    "p",
+    `city: ${userData.address.city} - ${userData.address.zipcode}`,
+    {
+      name: "class",
+      value: "userAddress__city",
+    }
+  );
+  // fine address
+
+  // inizio company
+
+  const userCompanyEl = createElement("div", "", {
+    name: "class",
+    value: "userCompany__container",
+  });
+
+  const userCompanyTitleEl = createElement("h3", "Company", {
+    name: "class",
+    value: "userCompany__title",
+  });
+
+  const userCompanyDetailsEl = createElement("div", "", {
+    name: "class",
+    value: "userCompany__companyContainer",
+  });
+
+  const userCompanyNameEl = createElement("p", userData.company.name, {
+    name: "class",
+    value: "userCompany__name",
+  });
+
+  // fine company
+
+  userNameUsernameEl.append(userNameEl, userAliasEl);
+
+  userProfileEl.append(userImgEl, userNameUsernameEl);
+
+  userMainInfo.append(userProfileEl, userStatusEl);
+
+  userContactsDetailsEl.append(
+    userContactsEmailEl,
+    userContactsPhoneEl,
+    userContactsWebsiteEl
+  );
+
+  userContactsEl.append(userContactsTitleEl, userContactsDetailsEl);
+
+  userAddressDetailsEl.append(userAddressStreetEl, userAddressCityEl);
+
+  userAddressEl.append(userAddressTitleEl, userAddressDetailsEl);
+
+  userCompanyDetailsEl.append(userCompanyNameEl);
+
+  userCompanyEl.append(userCompanyTitleEl, userCompanyNameEl);
+
+  userDetails.append(userContactsEl, userAddressEl, userCompanyEl);
+
+  modalcardEl.append(closeBtnEl, userMainInfo, userDetails);
+
+  wrapperEl.append(modalcardEl);
+
+  // event listener per chiudere la modale
+  wrapperEl.addEventListener("click", (event) => {
+    console.log(event.target);
+    if (event.target.classList.contains("userModal__overlay"))
+      wrapperEl.parentNode.removeChild(wrapperEl);
+  });
+
+  closeBtnEl.addEventListener("click", () => {
+    wrapperEl.parentNode.removeChild(wrapperEl);
+  });
+
   return wrapperEl;
 };
 
@@ -226,7 +457,8 @@ export const renderUserList = (list) =>
   list.forEach((user) => userContainer.append(genUser(user)));
 
 // definisco una funzione che mi permette di rispettare il concetto DRY riciclando le stesse operazioni al click dei filter
-const onClickHandle = (item) => {
+const onClickFilterHandle = (item) => {
+  // selezionando i figli del parent node (container dei filtri) posso rimuovere active da tutti i filtri e aggiungerlo solo al filtro cliccato
   item.parentNode.childNodes.forEach((child) =>
     child.classList.remove("active")
   );
