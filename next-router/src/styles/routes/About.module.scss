@@ -1,0 +1,25 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 300px;
+  gap: 50px;
+}
+
+.heroImage {
+  height: 600px;
+  width: 800px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  //   h3 {
+  //     flex: 1;
+  //   }
+}
