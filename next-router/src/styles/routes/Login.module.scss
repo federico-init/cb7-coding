@@ -1,0 +1,44 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px;
+  gap: 40px;
+
+  form {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  input {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    height: 24px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    border: none;
+    border-bottom: 1px solid $fontColor;
+    outline: none;
+  }
+  input[type="submit"] {
+    margin-top: 30px;
+    background: transparent;
+    border: 1px solid $fontColor;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:active {
+      background-color: $fontColor;
+      color: #fff;
+    }
+  }
+
+  p {
+    color: red;
+    font-weight: 600;
+  }
+}
