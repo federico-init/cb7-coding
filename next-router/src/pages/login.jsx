@@ -1,11 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext, useReducer } from "react";
 
 import styles from "../styles/routes/Login.module.scss";
 import { useRouter } from "next/router";
 
 import Home from "@/pages";
 
+import { GeneralContext } from "@/pages/index.jsx";
+
+// reducer - esercizio avanzato 17/07/2023
+
+// function reducer(state, action) {
+//   if (action.type === "changed_user")
+//     return {
+//       username: state.nextUsername,
+//     };
+//   throw Error("Unknown action: " + action.type);
+// }
+
+// const initialState = GeneralContext;
+
 export default function Login() {
+  // const roomReservation = useContext(GeneralContext);
+
+  // const [state, dispatch] = useReducer(reducer, initialState);
+
   const router = useRouter();
 
   const [username, setUsername] = useState("");
