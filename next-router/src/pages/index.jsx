@@ -11,26 +11,26 @@ import Script from "next/script";
 
 import { useRouter } from "next/router";
 
+// create context - esercizio 2 17/07/2023
+export const GeneralContext = createContext({
+  reservation_number: "RES001",
+  customer_name: "John Smith",
+  reservation_date: "2023-07-17",
+  checkin_date: "2023-07-20",
+  checkout_date: "2023-07-25",
+  room_number: 203,
+  room_type: "Deluxe Room",
+  number_of_guests: 2,
+  extra_services: ["Complimentary Breakfast", "Free Wi-Fi"],
+  payment_confirmed: true,
+  total_price: 500.0,
+  payment_method: "Credit Card",
+  notes: "No special requests.",
+});
+
 export default function Home() {
   const router = useRouter();
   const [auth, setAuth] = useState({});
-
-  // create context - esercizio 2 17/07/2023
-  const GeneralContext = createContext({
-    reservation_number: "RES001",
-    customer_name: "John Smith",
-    reservation_date: "2023-07-17",
-    checkin_date: "2023-07-20",
-    checkout_date: "2023-07-25",
-    room_number: 203,
-    room_type: "Deluxe Room",
-    number_of_guests: 2,
-    extra_services: ["Complimentary Breakfast", "Free Wi-Fi"],
-    payment_confirmed: true,
-    total_price: 500.0,
-    payment_method: "Credit Card",
-    notes: "No special requests.",
-  });
 
   useEffect(() => {
     setAuth(localStorage.getItem("auth"));
