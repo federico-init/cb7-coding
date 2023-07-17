@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import { GeneralContext } from "@/pages/index.jsx";
 
 import { useRouter } from "next/router";
 
@@ -14,6 +16,9 @@ export default function Dashboard() {
   useEffect(() => {
     !!setIsLogged(JSON.parse(localStorage.getItem("auth")));
   }, []);
+
+  // use context - esercizio 2 17/07/2023
+  const roomReservation = useContext(GeneralContext);
 
   return (
     isLogged && (
