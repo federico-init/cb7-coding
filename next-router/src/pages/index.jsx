@@ -8,6 +8,7 @@ import styles from "@/styles/Index.module.scss";
 import Head from "next/head";
 import Link from "next/link";
 import Script from "next/script";
+
 import { useRouter } from "next/router";
 
 export default function Home() {
